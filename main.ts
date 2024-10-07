@@ -403,8 +403,8 @@ namespace microbiti2cesp32v5 {
     )
     basic.pause(300)
     i2cmessage2=""
-    let dd = pins.i2cReadBuffer(8,952,false)
-    for (let index = 0; index <= 718; index++) {
+    let dd = pins.i2cReadBuffer(8,400,false)
+    for (let index = 0; index <= 400; index++) {
 
         let messagecheck2 = dd.getNumber(NumberFormat.Int8LE, index)
         if (messagecheck2 == -1) {

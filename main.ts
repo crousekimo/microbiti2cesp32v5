@@ -45,12 +45,13 @@ namespace microbituartesp32v1 {
     //% weight=102
     //% blockExternalInputs = 1
     export function setMicrobit(tx: SerialPin, rx: SerialPin, baudrate: BaudRate) {
+	basic.pause(2000)
         serial.redirect(
             tx,
             rx,
             baudrate
         )
-        basic.pause(2000)
+
     }
     //% group="1.Setup"
     //% blockId=iprequest block="Read WIFI IP"

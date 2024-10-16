@@ -47,13 +47,16 @@ namespace microbituartesp32v1 {
 	     }
      }
     //% group="1.Setup"
-    //% blockId=setWiFi block="Set WIFI | SSID %SSID| Pass %PASS"
-    //% weight=101
+    //% blockId=connectESP32 block="connect ESP32"
+    //% weight=102
     //% blockExternalInputs = 1
-    export function setWiFi(SSID: string, PASS: string):void {
+    export function connectESP32():void {
 	check()
-        sendi2cmessage("setwifi="+SSID+","+PASS+",1")
-	basic.pause(2000)
+        serial.redirect(
+        SerialPin.P2,
+        SerialPin.P12,
+        BaudRate.BaudRate9600
+        )
     }
     //% group="1.Setup"
     //% blockId=iprequest block="Read WIFI IP"
@@ -61,11 +64,9 @@ namespace microbituartesp32v1 {
     //% blockExternalInputs = 1
     export function iprequest():string {
 	check()
-        let a=receivei2cmessage("iprequest=").substr(1)
-   	if (!a.includes("iprequest"))
-           a=receivei2cmessage("iprequest=").substr(1)
-	basic.pause(100)
-        a=a.substr(9)
+        serial.writeLine("readwifi=")
+	delay(100)
+	let a = serial.readUntil(serial.delimiters(Delimiters.NewLine))
 	return a
     }
     //% group="2.MQTT"  

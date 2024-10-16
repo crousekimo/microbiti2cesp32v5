@@ -66,7 +66,7 @@ namespace microbituartesp32v1 {
     //% blockExternalInputs = 1
     export function iprequest():string {
 	check()
-        serial.writeLine("readwifi="+"\\n")
+        serial.writeLine("iprequest="+"\\n")
 	basic.pause(10)
         let a=serial.readString()
 	return a

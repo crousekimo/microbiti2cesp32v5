@@ -66,9 +66,9 @@ namespace microbituartesp32v1 {
     //% blockExternalInputs = 1
     export function iprequest():string {
 	check()
-        serial.writeLine("readwifi=")
-	basic.pause(100)
-	let a = serial.readUntil(serial.delimiters(Delimiters.NewLine))
+        serial.writeLine("readwifi="+"\\n")
+	basic.pause(10)
+        let a=serial.readString()
 	return a
     }
     //% group="2.MQTT"  

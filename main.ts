@@ -69,6 +69,8 @@ namespace microbituartesp32v1 {
         serial.writeLine("readwifi="+"\\n")
 	basic.pause(10)
         let a=serial.readString()
+	a=a.replaceAll("\\r","")
+        a=a.replaceAll("\\n","")
 	return convertToText(a.length)
     }
     //% group="2.MQTT"  

@@ -69,7 +69,7 @@ namespace microbituartesp32v1 {
         serial.writeLine("readwifi="+"\\n")
 	basic.pause(10)
         let a=serial.readString()
-	return a.length
+	return convertToText(a.length)
     }
     //% group="2.MQTT"  
     //% blockId=subMqtt block="Subscribe mqtt %topic"
@@ -155,7 +155,7 @@ namespace microbituartesp32v1 {
     //% blockId=openweathermapreturn block="OpenWeatherMap option %option "
     //% weight=20 
     export function openweathermapreturn(option: openweathermapmenu):number {
-        let a=serial.writeLine("openweathermapreturn="+option.toString()).substr(1)
+        let a=receivei2cmessage("openweathermapreturn="+option.toString()).substr(1)
 	basic.pause(100)
         a=receivei2cmessage("openweathermapreturn="+option.toString()).substr(1)
 	basic.pause(100)

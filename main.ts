@@ -47,16 +47,18 @@ namespace microbituartesp32v1 {
 	     }
      }
     //% group="1.Setup"
-    //% blockId=connectESP32 block="connect ESP32"
+    //% blockId=setMicrobit block="Initialize Microbit |TX %tx|RX %rx|Baud rate %baudrate "
+    //% tx.defl=SerialPin.P2
+    //% rx.defl=SerialPin.P12
     //% weight=102
     //% blockExternalInputs = 1
-    export function connectESP32():void {
-	check()
+    export function setMicrobit(tx: SerialPin, rx: SerialPin, baudrate: BaudRate) {
         serial.redirect(
-        SerialPin.P2,
-        SerialPin.P12,
-        BaudRate.BaudRate9600
+            tx,
+            rx,
+            baudrate
         )
+        basic.pause(100)
     }
     //% group="1.Setup"
     //% blockId=iprequest block="Read WIFI IP"

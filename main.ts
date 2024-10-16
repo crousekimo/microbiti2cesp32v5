@@ -38,14 +38,6 @@ namespace microbituartesp32v1 {
         field8 = 8
      }
      let aa=0;
-     function check()
-     {
-	     if (aa==0)
-	     {
-		     basic.pause(6000)
-		     aa=1
-	     }
-     }
     //% group="1.Setup"
     //% blockId=setMicrobit block="Initialize Microbit |TX %tx|RX %rx|Baud rate %baudrate "
     //% tx.defl=SerialPin.P2
@@ -65,7 +57,6 @@ namespace microbituartesp32v1 {
     //% weight=50
     //% blockExternalInputs = 1
     export function iprequest():string {
-	check()
         serial.writeLine("iprequest="+"\\n")
 	basic.pause(10)
         let a=serial.readString()
@@ -75,7 +66,6 @@ namespace microbituartesp32v1 {
     //% blockId=subMqtt block="Subscribe mqtt %topic"
     //% weight=100 
     export function subMqtt(topic: string):void {
-	 check()
          serial.writeLine("sebmqtt="+topic+"\\n")
 	 basic.pause(200)
     }

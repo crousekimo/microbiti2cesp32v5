@@ -1,7 +1,7 @@
 {
-    "name": "microbiti2cesp32v5",
+    "name": "microbituartesp32v1",
     "version": "0.5",
-    "description": "這是micro:bit用i2c控制esp32的積木",
+    "description": "這是micro:bit用uart控制esp32的積木",
     "license": "MIT",
     "dependencies": {
         "core": "*"
@@ -9,7 +9,7 @@
     "files": [
         "README.md",
         "main.ts",
-        "_locales/zh/microbiti2cesp32v5-strings.json"
+        "_locales/zh/microbituartesp32v1-strings.json"
     ],
     "public": true
 }

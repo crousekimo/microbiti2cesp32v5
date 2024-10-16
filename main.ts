@@ -69,21 +69,21 @@ namespace microbituartesp32v1 {
         serial.writeLine("readwifi="+"\\n")
 	basic.pause(10)
         let a=serial.readString()
-	return a
+	return a.length
     }
     //% group="2.MQTT"  
     //% blockId=subMqtt block="Subscribe mqtt %topic"
     //% weight=100 
     export function subMqtt(topic: string):void {
 	 check()
-         sendi2cmessage("sebmqtt="+topic)
+         serial.writeLine("sebmqtt="+topic+"\\n")
 	 basic.pause(200)
     }
     //% group="2.MQTT"  
     //% blockId=ReceiveMqttTopic block="receive mqtt topic"
     //% weight=98	
     export function ReceiveMqttTopic():string {
-        let a=receivei2cmessage("mqttrec=")
+        let a=receivei2cmessage("mqttrec="+"\\n")
 	basic.pause(100)
    	if (!a.includes("mqttrec"))
              a=receivei2cmessage("mqttrec=")
@@ -102,7 +102,7 @@ namespace microbituartesp32v1 {
     //% blockId=clearmqtt block="clear mqtt topic and message"
     //% weight=57 
     export function clearmqtt():void {
-        sendi2cmessage("clearmqtt=")
+        serial.writeLine("clearmqtt="+"\\n")
 	basic.pause(100)
     }  
 	
@@ -111,7 +111,7 @@ namespace microbituartesp32v1 {
     //% blockId=sendmqtt block="send mqtt topic %topic | message %message "
     //% weight=56 
     export function sendmqtt(topic: string, message: string):void {
-        sendi2cmessage("sendmqtt="+topic+","+message)
+        serial.writeLine("sendmqtt="+topic+","+message+"\\n")
 	basic.pause(100)
     }  
     //% group="3.Line notify"  
@@ -119,21 +119,21 @@ namespace microbituartesp32v1 {
     //% weight=100 
     export function linetoken(token: string):void {
 	check()
-        sendi2cmessage("linetoken="+token)
+        serial.writeLine("linetoken="+token+"\\n")
 	basic.pause(200)
     }  
     //% group="3.Line notify"  
     //% blockId=linemessage block="Line notify message %message "
     //% weight=57 
     export function linemessage(message: string):void {
-        sendi2cmessage("linemessage="+message)
+        serial.writeLine("linemessage="+message+"\\n")
 	basic.pause(200)
     }  
     //% group="3.Line notify"  
     //% blockId=linesticker block="Line notify sticker message %message | packageID %packageID | stickerID %stickerID "
     //% weight=56 
     export function linesticker(message: string,packageID: number, stickerID: number):void {
-        sendi2cmessage("linesticker="+message+","+packageID.toString()+","+stickerID.toString())
+        serial.writeLine("linesticker="+message+","+packageID.toString()+","+stickerID.toString()+"\\n")
 	basic.pause(200)
     }  
   //% group="4.OpenWeatherMap"  	
@@ -141,21 +141,21 @@ namespace microbituartesp32v1 {
     //% weight=99 
     export function openweathermapsetup(key: string):void {
 	check()
-        sendi2cmessage("openweathermapsetup="+key)
+        serial.writeLine("openweathermapsetup="+key+"\\n")
 	basic.pause(200)
     }  
     //% group="4.OpenWeatherMap"  
     //% blockId=openweathermapcity block="OpenWeatherMap city %city "
     //% weight=45
     export function openweathermapcity(city: string):void {
-        sendi2cmessage("openweathermapcity="+city)
+        serial.writeLine("openweathermapcity="+city+"\\n")
 	basic.pause(400)
     }  
   //% group="4.OpenWeatherMap"  
     //% blockId=openweathermapreturn block="OpenWeatherMap option %option "
     //% weight=20 
     export function openweathermapreturn(option: openweathermapmenu):number {
-        let a=receivei2cmessage("openweathermapreturn="+option.toString()).substr(1)
+        let a=serial.writeLine("openweathermapreturn="+option.toString()).substr(1)
 	basic.pause(100)
         a=receivei2cmessage("openweathermapreturn="+option.toString()).substr(1)
 	basic.pause(100)
@@ -168,7 +168,7 @@ namespace microbituartesp32v1 {
     //% weight=50
     export function sendifttt(key: string, event: string, value1: string, value2: string, value3: string):void {
 	value1=value1+"&value2="+value2+"&value3="+value3;
-        sendi2cmessage("ifttt="+key+","+event+","+value1) 
+        serial.writeLine("ifttt="+key+","+event+","+value1+"\\n") 
 	basic.pause(200)
     }
 
@@ -178,7 +178,7 @@ namespace microbituartesp32v1 {
     //% weight=70
     export function ntpsetup():void {
 	check()
-        sendi2cmessage("ntps=") 
+        serial.writeLine("ntps="+"\\n") 
 	basic.pause(200)
     }
 	
@@ -186,7 +186,7 @@ namespace microbituartesp32v1 {
     //% blockId=ntpget block="ntpget"
     //% weight=50
     export function ntpget():void {
-        sendi2cmessage("ntpget1=")
+        serial.writeLine("ntpget1=")
 	basic.pause(200)
 	nptgettime=receivei2cmessage("ntpget2=").substr(1)
 	if (!nptgettime.includes("ntpget2"))
@@ -206,7 +206,7 @@ namespace microbituartesp32v1 {
     //% blockId=google1 block="set google form question %google_number as %google_ans" 
     //% weight=70
     export function google1(google_number: number, google_ans: string):void {
-        sendi2cmessage("google1="+convertToText(google_number)+","+google_ans)
+        serial.writeLine("google1="+convertToText(google_number)+","+google_ans+"\\n")
 	basic.pause(200)
     }
 	
@@ -214,7 +214,7 @@ namespace microbituartesp32v1 {
     //% blockId=google2 block="set google form url as %google_url" 
     //% weight=70
     export function google2(google_url: string):void {
-        sendi2cmessage("google2="+convertToText(google_url))
+        serial.writeLine("google2="+convertToText(google_url)+"\\n")
 	basic.pause(200)
     }
 	
@@ -222,7 +222,7 @@ namespace microbituartesp32v1 {
     //% blockId=google block="Send to Google form"
     //% weight=30
     export function google():void {
-        sendi2cmessage("google=") 
+        serial.writeLine("google="+"\\n") 
 	basic.pause(200)
     }
 	
@@ -242,7 +242,7 @@ namespace microbituartesp32v1 {
     //% blockId=clear_httpcommand block="Clear HTTP COMMAND"
     //% weight=28
     export function clear_httpcommand():void {
-        sendi2cmessage("clear_httpcommand=") 
+        serial.writeLine("clear_httpcommand="+"\\n") 
 	basic.pause(200)
     }
 	
@@ -250,7 +250,7 @@ namespace microbituartesp32v1 {
     //% blockId=http_command1 block="Microbit data %data"
     //% weight=27
     export function http_command1(data: string):void {
-        sendi2cmessage("http_d="+data) 
+        serial.writeLine("http_d="+data+"\\n") 
 	basic.pause(200)
     }
     //% group="9.HTTP_HTML"
@@ -314,7 +314,7 @@ namespace microbituartesp32v1 {
     //% pin.min=1 pin.max=39 pin.defl=1
     //% weight=20
     export function esp32_pinmode(pin: number, pin1: pin_mode):void {
-        sendi2cmessage("pinMode="+convertToText(pin)+","+convertToText(pin1))
+        serial.writeLine("pinMode="+convertToText(pin)+","+convertToText(pin1))
 	basic.pause(200)
     }
     //% group="9.ESP32_CONTROL"
@@ -323,7 +323,7 @@ namespace microbituartesp32v1 {
     //% pin1.min=0 pin1.max=1 pin1.defl=0
     //% weight=19
     export function esp32_digitalwrite(pin:number, pin1: number):void {
-        sendi2cmessage("digitalWrite="+convertToText(pin)+","+convertToText(pin1))
+        serial.writeLine("digitalWrite="+convertToText(pin)+","+convertToText(pin1))
 	basic.pause(200)
     }
     //% group="9.ESP32_CONTROL"
@@ -332,7 +332,7 @@ namespace microbituartesp32v1 {
     //% pin1.min=0 pin1.max=255 pin1.defl=0
     //% weight=18
     export function esp32_analogwrite(pin:number, pin1: number):void {
-        sendi2cmessage("analogWrite="+convertToText(pin)+","+convertToText(pin1))
+        serial.writeLine("analogWrite="+convertToText(pin)+","+convertToText(pin1))
 	basic.pause(200)
     }
     //% group="9.ESP32_CONTROL"  
@@ -365,7 +365,7 @@ namespace microbituartesp32v1 {
     //% weight=15
     export function sendmake(key: string, value1: string, value2: string, value3: string):void {
 	value1="?value1="+value1+"&value2="+value2+"&value3="+value3;
-        sendi2cmessage("httpclientget=hook.eu2.make.com,/"+key+"/"+value1) 
+        serial.writeLine("httpclientget=hook.eu2.make.com,/"+key+"/"+value1) 
 	basic.pause(200)
     }
 	

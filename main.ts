@@ -50,7 +50,7 @@ namespace microbituartesp32v1 {
             rx,
             baudrate
         )
-        basic.pause(100)
+        basic.pause(2000)
     }
     //% group="1.Setup"
     //% blockId=iprequest block="Read WIFI IP"
@@ -58,7 +58,7 @@ namespace microbituartesp32v1 {
     //% blockExternalInputs = 1
     export function iprequest():string {
         serial.writeLine("iprequest="+"\\n")
-	basic.pause(10)
+	basic.pause(100)
         let a=serial.readString()
 	return a
     }
@@ -67,14 +67,14 @@ namespace microbituartesp32v1 {
     //% weight=100 
     export function subMqtt(topic: string):void {
          serial.writeLine("sebmqtt="+topic+"\\n")
-	 basic.pause(200)
+	 basic.pause(100)
     }
     //% group="2.MQTT"  
     //% blockId=ReceiveMqttTopic block="receive mqtt topic"
     //% weight=98	
     export function ReceiveMqttTopic():string {
 	serial.writeLine("mqttrec="+"\\n")
-	basic.pause(10)
+	basic.pause(100)
         let a=serial.readString()
 	mqttlist=a.split(",")
 	return mqttlist[0]
@@ -107,14 +107,14 @@ namespace microbituartesp32v1 {
     //% weight=100 
     export function linetoken(token: string):void {
         serial.writeLine("linetoken="+token+"\\n")
-	basic.pause(200)
+	basic.pause(100)
     }  
     //% group="3.Line notify"  
     //% blockId=linemessage block="Line notify message %message "
     //% weight=57 
     export function linemessage(message: string):void {
         serial.writeLine("linemessage="+message+"\\n")
-	basic.pause(200)
+	basic.pause(100)
     }  
     //% group="3.Line notify"  
     //% blockId=linesticker block="Line notify sticker message %message | packageID %packageID | stickerID %stickerID "

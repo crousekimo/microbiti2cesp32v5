@@ -65,7 +65,7 @@ namespace microbituartesp32v1 {
     export function iprequest():string {
 	check()
         serial.writeLine("readwifi=")
-	delay(100)
+	basic.pause(100)
 	let a = serial.readUntil(serial.delimiters(Delimiters.NewLine))
 	return a
     }

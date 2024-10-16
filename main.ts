@@ -1,5 +1,5 @@
-//% weight=0 color=#EC7505 icon="\uf0ad" block="microbiti2cesp32v5"
-namespace microbiti2cesp32v5 {
+//% weight=0 color=#ECAA05 icon="\uf0ad" block="microbituartesp32v1"
+namespace microbituartesp32v1 {
 
      export enum openweathermapmenu {
         Lon = 1,

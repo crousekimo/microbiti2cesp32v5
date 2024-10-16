@@ -66,7 +66,7 @@ namespace microbituartesp32v1 {
     //% blockExternalInputs = 1
     export function iprequest():string {
 	check()
-        serial.writeString("iprequest="+"\\n")
+        serial.writeLine("iprequest="+"\\n")
 	basic.pause(10)
         let a=serial.readString()
 	return a
@@ -76,14 +76,14 @@ namespace microbituartesp32v1 {
     //% weight=100 
     export function subMqtt(topic: string):void {
 	 check()
-         serial.writeString("sebmqtt="+topic+"\\n")
+         serial.writeLine("sebmqtt="+topic+"\\n")
 	 basic.pause(200)
     }
     //% group="2.MQTT"  
     //% blockId=ReceiveMqttTopic block="receive mqtt topic"
     //% weight=98	
     export function ReceiveMqttTopic():string {
-	serial.writeString("mqttrec="+"\\n")
+	serial.writeLine("mqttrec="+"\\n")
 	basic.pause(10)
         let a=serial.readString()
 	mqttlist=a.split(",")
@@ -100,7 +100,7 @@ namespace microbituartesp32v1 {
     //% blockId=clearmqtt block="clear mqtt topic and message"
     //% weight=57 
     export function clearmqtt():void {
-        serial.writeString("clearmqtt="+"\\n")
+        serial.writeLine("clearmqtt="+"\\n")
 	basic.pause(100)
     }  
 	
@@ -109,7 +109,7 @@ namespace microbituartesp32v1 {
     //% blockId=sendmqtt block="send mqtt topic %topic | message %message "
     //% weight=56 
     export function sendmqtt(topic: string, message: string):void {
-        serial.writeString("sendmqtt="+topic+","+message+"\\n")
+        serial.writeLine("sendmqtt="+topic+","+message+"\\n")
 	basic.pause(100)
     }  
     //% group="3.Line notify"  

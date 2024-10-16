@@ -106,7 +106,6 @@ namespace microbituartesp32v1 {
     //% blockId=linetoken block="Line notify token %token "
     //% weight=100 
     export function linetoken(token: string):void {
-	check()
         serial.writeLine("linetoken="+token+"\\n")
 	basic.pause(200)
     }  
@@ -128,7 +127,6 @@ namespace microbituartesp32v1 {
     //% blockId=openweathermapsetup block="OpenWeatherMap key %key "
     //% weight=99 
     export function openweathermapsetup(key: string):void {
-	check()
         serial.writeLine("openweathermapsetup="+key+"\\n")
 	basic.pause(200)
     }  
@@ -165,7 +163,6 @@ namespace microbituartesp32v1 {
     //% blockId=ntpsetup block="NTP setup"
     //% weight=70
     export function ntpsetup():void {
-	check()
         serial.writeLine("ntps="+"\\n") 
 	basic.pause(200)
     }
@@ -219,7 +216,6 @@ namespace microbituartesp32v1 {
     //% weight=29
     //% blockExternalInputs = 1
     export function http_command():string {
-	check()
         let a=receivei2cmessage("http_r=").substr(1)
         a=receivei2cmessage("http_r=").substr(1)
         a=a.substr(6)

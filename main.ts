@@ -144,9 +144,6 @@ namespace microbituartesp32v1 {
         serial.writeLine("ntpget1="+"\\n")
 	basic.pause(100)
         nptgettime=serial.readString()
-	basic.showString(nptgettime)
-	datelist=nptgettime.split(",")
-        nptgettime=receivei2cmessage("ntpget2=").substr(1)	    
 	datelist=nptgettime.split(",")
     }
 	

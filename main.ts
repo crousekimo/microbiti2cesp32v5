@@ -141,12 +141,12 @@ namespace microbituartesp32v1 {
     //% blockId=ntpget block="ntpget"
     //% weight=50
     export function ntpget():void {
-        serial.writeLine("ntpget1=")
-	basic.pause(200)
-	nptgettime=receivei2cmessage("ntpget2=").substr(1)
-	if (!nptgettime.includes("ntpget2"))
-	        nptgettime=receivei2cmessage("ntpget2=").substr(1)
-        nptgettime=nptgettime.substr(7)
+        serial.writeLine("ntpget1="+"\\n")
+	basic.pause(100)
+        nptgettime=serial.readString()
+	basic.showString(nptgettime)
+	datelist=nptgettime.split(",")
+        nptgettime=receivei2cmessage("ntpget2=").substr(1)	    
 	datelist=nptgettime.split(",")
     }
 	

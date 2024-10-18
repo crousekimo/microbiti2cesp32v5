@@ -103,41 +103,14 @@ namespace microbituartesp32v1 {
         serial.writeLine("sendmqtt="+topic+","+message+"\\n")
 	basic.pause(100)
     }  
-  //% group="3.OpenWeatherMap"  	
-    //% blockId=openweathermapsetup block="OpenWeatherMap key %key "
-    //% weight=99 
-    export function openweathermapsetup(key: string):void {
-        serial.writeLine("openweathermapsetup="+key+"\\n")
-	basic.pause(200)
-    }  
-    //% group="3.OpenWeatherMap"  
-    //% blockId=openweathermapcity block="OpenWeatherMap city %city "
-    //% weight=45
-    export function openweathermapcity(city: string):void {
-        serial.writeLine("openweathermapcity="+city+"\\n")
-	basic.pause(400)
-    }  
-  //% group="3.OpenWeatherMap"  
-    //% blockId=openweathermapreturn block="OpenWeatherMap option %option "
-    //% weight=20 
-    export function openweathermapreturn(option: openweathermapmenu):number {
-        let a=receivei2cmessage("openweathermapreturn="+option.toString()).substr(1)
-	basic.pause(100)
-        a=receivei2cmessage("openweathermapreturn="+option.toString()).substr(1)
-	basic.pause(100)
-        a=a.substr(20) 
-	return parseFloat(a)
-    } 
-
-    //% group="4.NTP"  
+    //% group="3.NTP"  
     //% blockId=ntpsetup block="NTP setup"
     //% weight=70
     export function ntpsetup():void {
         serial.writeLine("ntps="+"\\n") 
 	basic.pause(200)
     }
-	
-     //% group="4.NTP"  
+     //% group="3.NTP"  
     //% blockId=ntpget block="ntpget"
     //% weight=50
     export function ntpget():void {
@@ -146,15 +119,14 @@ namespace microbituartesp32v1 {
         nptgettime=serial.readString()
 	datelist=nptgettime.split(",")
     }
-	
-    //% group="4.NTP"  
+    //% group="3.NTP"  
     //% blockId=ntpgettime block="read %time1"
     //% weight=30
     export function ntpgettime(time1: ntptime):number {
         return parseFloat(datelist[time1])
     }
 
-     //% group="5.google"  
+     //% group="4.google"  
     //% blockId=google1 block="set google form question %google_number as %google_ans" 
     //% weight=70
     export function google1(google_number: number, google_ans: string):void {
@@ -162,7 +134,7 @@ namespace microbituartesp32v1 {
 	basic.pause(200)
     }
 	
-    //% group="5.google"  
+    //% group="4.google"  
     //% blockId=google2 block="set google form url as %google_url" 
     //% weight=70
     export function google2(google_url: string):void {
@@ -170,7 +142,7 @@ namespace microbituartesp32v1 {
 	basic.pause(200)
     }
 	
-     //% group="5.google"  
+     //% group="4.google"  
     //% blockId=google block="Send to Google form"
     //% weight=30
     export function google():void {
@@ -178,18 +150,18 @@ namespace microbituartesp32v1 {
 	basic.pause(200)
     }
 	
-    //% group="6.HTTP_COMMAND"
+    //% group="5.HTTP_COMMAND"
     //% blockId=http_command block="Read HTTP COMMAND"
     //% weight=29
     //% blockExternalInputs = 1
     export function http_command():string {
-        let a=receivei2cmessage("http_r=").substr(1)
-        a=receivei2cmessage("http_r=").substr(1)
-        a=a.substr(6)
+        serial.writeLine("http_r="+"\\n")
+	basic.pause(100)
+        let a==serial.readString()
 	return a
     }
 	
-    //% group="6.HTTP_COMMAND"
+    //% group="5.HTTP_COMMAND"
     //% blockId=clear_httpcommand block="Clear HTTP COMMAND"
     //% weight=28
     export function clear_httpcommand():void {
@@ -197,46 +169,46 @@ namespace microbituartesp32v1 {
 	basic.pause(200)
     }
 	
-    //% group="6.HTTP_COMMAND"
+    //% group="5.HTTP_COMMAND"
     //% blockId=http_command1 block="Microbit data %data"
     //% weight=27
     export function http_command1(data: string):void {
         serial.writeLine("http_d="+data+"\\n") 
 	basic.pause(200)
     }
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_refresh block="Refresh web page %num sec"
     //% weight=26
     export function http_refresh(num: string):string {
         return "<meta http-equiv=refresh content="+num+">"
     }
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_center block="center"
     //% weight=25
     export function http_center():string {
         return "<center>"
     }
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_center1 block="center end"
     //% weight=24
     export function http_center1():string {
         return "</center>"
     }
 
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_br block="br"
     //% weight=23
     export function http_br():string {
         return "<br>"
     }
 
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_href block="href send command: %data text: %text"
     //% weight=22
     export function http_href(data: string, text: string):string {
         return "<a href=http_d2="+data+">"+text+"</a>"
     }
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_space block="insert %num space"
     //% num.min=1 num.max=1000 num.defl=1
     //% weight=21
@@ -247,71 +219,20 @@ namespace microbituartesp32v1 {
         return a
     }
 
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_p block="paragraph font size %num "
     //% num.min=1 num.max=1000 num.defl=1
     //% weight=20
     export function http_p(num: number):string {
         return "<p style=font-size:"+num+"vw;>"
     }
-    //% group="7.HTTP_HTML"
+    //% group="6.HTTP_HTML"
     //% blockId=http_p1 block="paragraph end"
     //% weight=19
     export function http_p1():string {
         return "</p>"
     }	
-    //% group="7.ESP32_CONTROL"
-    //% blockId=esp32_pinmode block="ESP32 Pin %pin as %pin1 "
-    //% pin.min=1 pin.max=39 pin.defl=1
-    //% weight=20
-    export function esp32_pinmode(pin: number, pin1: pin_mode):void {
-        serial.writeLine("pinMode="+convertToText(pin)+","+convertToText(pin1))
-	basic.pause(200)
-    }
-    //% group="7.ESP32_CONTROL"
-    //% blockId=esp32_digitalwrite block="ESP32 digitalWrite pin %pin as %pin1"
-    //% pin.min=1 pin.max=39 pin.defl=1
-    //% pin1.min=0 pin1.max=1 pin1.defl=0
-    //% weight=19
-    export function esp32_digitalwrite(pin:number, pin1: number):void {
-        serial.writeLine("digitalWrite="+convertToText(pin)+","+convertToText(pin1))
-	basic.pause(200)
-    }
-    //% group="7.ESP32_CONTROL"
-    //% blockId=esp32_analogwrite block="ESP32 analogWrite pin %pin as %pin1"
-    //% pin.min=1 pin.max=39 pin.defl=1
-    //% pin1.min=0 pin1.max=255 pin1.defl=0
-    //% weight=18
-    export function esp32_analogwrite(pin:number, pin1: number):void {
-        serial.writeLine("analogWrite="+convertToText(pin)+","+convertToText(pin1))
-	basic.pause(200)
-    }
-    //% group="7.ESP32_CONTROL"  
-    //% blockId=esp32_digitalread block="ESP32 digitalRead %pin"
-    //% pin.min=1 pin.max=39 pin.defl=1
-    //% weight=17 
-    export function esp32_digitalread(pin: number):number {
-        let a=receivei2cmessage("digitalRead="+pin.toString()).substr(1)
-	basic.pause(50)
-        a=receivei2cmessage("digitalRead="+pin.toString()).substr(1)
-	basic.pause(50)
-        a=a.substr(11) 
-	return parseFloat(a)
-    } 
-    //% group="7.ESP32_CONTROL"  
-    //% blockId=esp32_analogread block="ESP32 analogRead %pin"
-    //% pin.min=1 pin.max=39 pin.defl=1
-    //% weight=16 
-    export function esp32_analogread(pin: number):number {
-        let a=receivei2cmessage("analogRead="+pin.toString()).substr(1)
-	basic.pause(50)
-        a=receivei2cmessage("analogRead="+pin.toString()).substr(1)
-	basic.pause(50)
-        a=a.substr(10) 
-	return parseFloat(a)
-    } 
-
-    //% group="8.Make.com"  
+    //% group="7.Make.com"  
     //% blockId=sendmake block="send Make.com key %key | value1 %value1 | value2 %value2 | value3 %value3"
     //% weight=15
     export function sendmake(key: string, value1: string, value2: string, value3: string):void {

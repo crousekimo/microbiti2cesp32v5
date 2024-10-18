@@ -157,7 +157,7 @@ namespace microbituartesp32v1 {
     export function http_command():string {
         serial.writeLine("http_r="+"\\n")
 	basic.pause(100)
-        let a==serial.readString()
+        let a=serial.readString()
 	return a
     }
 	
